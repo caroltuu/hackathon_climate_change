@@ -10,7 +10,6 @@ def create_account_table():
         name TEXT NOT NULL,
         emailAddress TEXT NOT NULL,
         password TEXT NOT NULL,
-        school TEXT NOT NULL,
         courseName TEXT,
         lectureNotes TEXT,
         description TEXT
@@ -22,12 +21,12 @@ def create_account_table():
     conn.close()
 
 #insert data
-def insert_account(name, email_address, password, school):
+def insert_account(name, emailAddress, password):
     conn = sqlite3.connect('accounts.db')
     cursor = conn.cursor()
 
-    cursor.execute('INSERT INTO accounts (name, email_address, password, school, courseName, lectureNotes, description) VALUES (?, ?, ?, ?, ?, ?, ?)', 
-                   (name, email_address, password, school, None, None, None))
+    cursor.execute('INSERT INTO accounts (name, emailAddress, password, courseName, lectureNotes, description) VALUES (?, ?, ?, ?, ?, ?)', 
+                   (name, emailAddress, password, None, None, None))
 
     conn.commit()
     conn.close()
@@ -49,13 +48,11 @@ def is_account(emailAddress, password):
             return True
     return False
 
-def new_course(courseName, lectureNotes, description):
+def new_course(emailAddress, courseName, lectureNotes, description):
     conn = sqlite3.connect('accounts.db')
     cursor = conn.cursor()
 
-    cursor.execute('UPDATE accounts SET courseName = ?', (courseName))
-    cursor.execute('UPDATE accounts SET lectureNotes = ?', (lectureNotes))
-    cursor.execute('UPDATE accounts SET description = ?', (description))
+    cursor.execute('UPDATE accounts SET courseName = ?, lectureNotes = ?, description = ? WHERE emailAddress = ?', (courseName, lectureNotes, description, emailAddress))
 
     conn.commit()
     conn.close()
@@ -64,11 +61,12 @@ def get_description(emailAddress):
     conn = sqlite3.connect('accounts.db')
     cursor = conn.cursor()
 
-    cursor.execute('SELECT description FROM accounts WHERE emailAddress = ?', (emailAddress))
+    cursor.execute('SELECT description FROM accounts WHERE emailAddress = ?', (emailAddress,))
+    descriptions = cursor.fetchall()
 
     conn.commit()
     conn.close()
-
+    return descriptions
 
 
 #course database
