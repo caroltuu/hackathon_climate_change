@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=AR+One+Sans:wght@500&family=Young+Serif&display=swap');
+
+
+
+body {
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  height: 100vh;
+}
+
+.search-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.search-bar{
+  display: inline-block;
+}
+
+
+.welcome-page {
+  display: flex;
+  height: 100vh;
+}
+
+.login-container {
+  background-color: #f0f0f0;
+  border: 1px solid #222222;
+  border-radius: 8px;
+  box-sizing: border-box;
+  display: inline-block;
+  font-family: 'AR One Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  padding: 13px 23px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  width: auto;
+}
+
+.left-half {
+  flex: 1;
+  background-color: #4c70af; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-half h1 {
+  max-width: 100px; 
+  font-family: 'Young Serif', serif;
+  font-size: 40px;
+  color:#f0f0f0
+}
+
+.right-half {
+  flex: 1;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.info {
+  font-size: 18px;
+  margin-top: 20px;
+  color: #555555;
+  margin-left: 40px;
+  margin-right: 40px;
+  font-family: 'AR One Sans', sans-serif;
+}
+
+.course h3{
+  font-family: 'AR One Sans', sans-serif;
+}
+
+.course h5 {
+  font-family: 'AR One Sans', sans-serif;
+}
+
+.course p {
+  font-size: 10px;
+  color: #555555;
+  font-family: 'AR One Sans', sans-serif;
+}
+
+
+
+.signup, .login, .s {
+  background-color: #FFFFFF;
+  border: 1px solid #222222;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #222222;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'AR One Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  padding: 13px 23px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+  user-select: none;
+  -webkit-user-select: none;
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.signup:focus-visible, .login:focus-visible {
+  box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+  transition: box-shadow .2s;
+}
+
+.signup:active,.login:active {
+  background-color: #F7F7F7;
+  border-color: #000000;
+  transform: scale(.96);
+}
+
+.signup:disabled, .login:disabled {
+  border-color: #DDDDDD;
+  color: #DDDDDD;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+
+
+

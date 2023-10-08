@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <div class="add-container">
+      <div class="div">
+        <h3>Add Your Syllabus</h3>
+        <form action="/syllabus" method="post">
+          <div class="form-group">
+              <label for="courseID" class="text-wrapper-3">Course ID</label>
+              <input type="text" id="courseID" name="courseID" required autocomplete="off">
+          </div>
+          <div class="form-group">
+              <label for="courseName" class="text-wrapper-4">Course Name</label>
+              <input type="text" id="courseName" name="courseName" required autocomplete="off">
+          </div>
+          <div class="form-group">
+              <label for="description" class="text-wrapper-6">Course Description</label>
+              <input type="description" id="description" name="description" required autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="syllabus" class="text-wrapper-6">Link to Syllabus</label>
+            <input type="syllabus" id="syllabus" name="syllabus" required autocomplete="off">
+        </div>
+          <div class="form-group">
+              <input type="checkbox" id="agreeTerms" name="agree_terms" required>
+              <label for="agreeTerms" class="p">I agree to publicly share my course information</label>
+          </div>
+          <div class="form-group">
+              <button type="submit" class="overlap"><span class="text-wrapper-2">Add</span></button>
+          </div>
+      </form>
+        <p class="p">I agree to the Terms and Privacy Policy</p>
+      </div>
+    </div>
+  </body>
+</html>

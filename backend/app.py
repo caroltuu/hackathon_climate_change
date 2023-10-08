@@ -1,92 +1,75 @@
-from flask import Flask, render_template, redirect, url_for, session
-from database import DatabaseManager
-import request
+from flask import Flask, render_template, redirect, url_for, flash, request
 import database
-import ai
+from flask import session, Flask
+import sentenceBert
 
-app = Flask(__name__)
-db_manager = DatabaseManager('')
-
+app = Flask(__name__, template_folder='templates')
+app.secret_key = 'asecretkeyiguess'
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+def welcome():
+    return render_template('welcome.html')
 
-@app.route('/create')
+@app.route('/signup')
 def create_page():
-    return render_template('create.html')
-
-@app.route('/create', methods=['POST'])
-def create_post():
-    name = request.form.get('name')
-    emailAddress= request.form.get('emailAddress')
-    password = request.form.get('password')
-    school = request.form.get('school')
-    courseName = request.form.get('courseName')
-    lectureNotes = request.form.get('lectureNotes')
-    description = request.form.get('description')
-
-    print(f"Received for data - Name: {name}, Email: {emailAddress}")
-    
-    return redirect(url_for(
-        'submit_page',
-        name=name,
-        emailAddress=emailAddress,
-        password=password,
-        school=school,
-        courseName = courseName,
-        lectureNotes = lectureNotes,
-        description = description
-        )
-    )
-
-@app.route('/submit', methods=['GET'])
-def submit_page():
-    name = request.args.get('name')
-    emailAddress = request.args.get('emailAddress')
-    password = request.args.get('password')
-    school = request.args.get('school')
-    courseName = int(request.args.get('courseName'))
-    lectureNotes = int(request.args.get('lectureNotes'))
-    description = int(request.args.get('description'))
-
-    database.insert_account(name, emailAddress, password, school, courseName, lectureNotes, description)
-    return render_template('submit.html', emailAddress=emailAddress)
+    return render_template('signup.html')
 
 @app.route('/login')
 def login_page():
     return render_template('login.html')
 
+@app.route('/recommendations')
+def rec_page():
+    return render_template('recommendations.html')
+
+@app.route('/signup', methods=['POST'])
+def create_post():
+    name = request.form.get('name')
+    emailAddress= request.form.get('emailAddress')
+    password = request.form.get('password')
+    database.insert_account(name, emailAddress, password)
+
+    print(f"Received for data - Name: {name}, Email: {emailAddress}")
+    
+    return redirect(url_for(
+        'login_page',
+        name=name,
+        emailAddress=emailAddress,
+        password=password
+        )
+    )
+
+@app.route('/search', methods=['POST'])
+def search():
+    user_input = request.form.get('user_input')
+    results = sentenceBert.find_similar_courses(user_input)
+    return render_template('recommendations.html', results=results)
+
+
 @app.route('/login', methods=['POST'])
 def login_post():
     emailAddress = request.form.get('emailAddress')
     password = request.form.get('password')
+    print(f"Attempting to login with: {emailAddress}, {password}")
 
     if database.is_account(emailAddress, password):
-        session['emailAddress'] = emailAddress
-        return redirect(url_for(
-            'prompt_page', 
-            emailAddress=emailAddress
-            ))
+        flash('Login successful!', 'success')
+        return redirect(url_for('dashboard_page', emailAddress = emailAddress))
     else: 
+        flash('Invalid username or password. Please try again.', 'error')
         return redirect(url_for('login_page'))
 
-@app.route('/prompt', methods=['GET'])
-def prompt_page():
+
+@app.route('/dashboard', methods=['GET'])
+def dashboard_page():
     emailAddress = request.args.get('emailAddress')
-    return render_template('prompt.html', emailAddress=emailAddress)
+    return render_template('dashboard.html', emailAddress=emailAddress)
 
 @app.route('/logout')
 def logout():
     session.pop('emailAddress', None)
-    return redirect(url_for('index'))
-    
-
-# @app.route('/ai', methods=['GET'])
-# def get_prof_email():
-#     email = ai.global_variable
+    return redirect('/welcome')
 
 if __name__ == '__main__':
     database.create_account_table()
-    database.create_course_table()
     app.run(debug=True)
