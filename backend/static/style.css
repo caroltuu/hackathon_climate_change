@@ -19,7 +19,46 @@ body {
 }
 
 .search-bar{
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#user_input {
+  height: 60px;
+  width: 400px;
+  font-size: 18px;
+  margin-right: 10px;
+  font-family: 'AR One Sans', sans-serif;
+}
+
+.course-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f7f7f7;  /* Light gray background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;  /* Or whatever width you prefer */
+    margin: 20px auto;
+}
+
+.course {
+    background-color: #fff;  /* White background */
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    width: 100%;
+    transition: box-shadow 0.3s ease;
+}
+
+
+#searchCourseButton {
+  height: 60px;
+  font-size: 18px;
+  font-family: 'AR One Sans', sans-serif;
 }
 
 
@@ -104,14 +143,13 @@ body {
   box-sizing: border-box;
   color: #222222;
   cursor: pointer;
-  display: inline-block;
   font-family: 'AR One Sans', sans-serif;
   font-size: 16px;
   font-weight: 600;
   line-height: 20px;
   margin: 0;
   outline: none;
-  padding: 13px 23px;
+  padding: 20px 23px;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -122,6 +160,7 @@ body {
   width: auto;
   display: flex;
   justify-content: space-between;
+  margin-right: 10px;
 }
 
 .signup:focus-visible, .login:focus-visible {
@@ -142,6 +181,9 @@ body {
   opacity: 1;
 }
 
-
+.welcomeButtons {
+  display: flex;
+  justify-content: space-between; /* Optional: to space the buttons equally in the available space */
+}
 
 

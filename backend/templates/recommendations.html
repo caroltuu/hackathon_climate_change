@@ -19,21 +19,19 @@
     </form>
 
 
-    <div id="searchResults">
-        <div class="course-container">
-            {%if results %}
-                {% for index in range(results[4]) %}
-                    <div class="course">
-                        <h3>{{ results[1][index] }} / {{ results[2][index] }}</h4>
-                        <h5>{{ results[3][index] }}</h6>
-                        <p>{{ results[0][index] }}</p>
-                        <p></p>
-                    </div>
-                {% endfor %} 
-            {% else %}
+    <div class="course-container">
+        {%if results %}
+            {% for index in range(10) %}
+                <div class="course">
+                    <h3>{{ results[1][index] }} / {{ results[2][index] }}</h3>
+                    <h5>{{ results[3][index] }}</h5>
+                    <p>{{ results[0][index] }}</p>
+                    <p></p>
+                </div>
+            {% endfor %} 
+        {% else %}
             
-            {% endif %}
-        </div>
+        {% endif %}
     </div>
 </body>
 
