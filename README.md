@@ -1,5 +1,5 @@
 # hackathon_climate_change
-This is a Hackathon Project (Team of 5)
+Created for Girls in Tech NYC Hackathon. Won third place. 
 
 # AI-Powered Education Hub for Business and Climate Change
 
