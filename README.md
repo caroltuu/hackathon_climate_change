@@ -81,4 +81,4 @@ Future development can focus on expanding the platform's capabilities, including
 - Analytics and reporting features for educators.
 
 ## Conclusion
-Our project aims to leverage AI to facilitate the teaching of business and climate change at peer business schools across the United States. By creating an AI-powered education hub, we reduce barriers for faculty to share their open-access syllabi, course materials, and cases and enhance the educational experience. This project aligns with the growing demand for sustainability-focused education and promotes collaboration among educators in addressing climate change challenges.
+Syllabot aims to leverage AI to facilitate the teaching of business and climate change at peer business schools across the United States. By creating an AI-powered education hub, we reduce barriers for faculty to share their open-access syllabi, course materials, and cases and enhance the educational experience. This project aligns with the growing demand for sustainability-focused education and promotes collaboration among educators in addressing climate change challenges.
